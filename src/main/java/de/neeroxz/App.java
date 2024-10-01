@@ -1,4 +1,4 @@
-package org.example;
+package de.neeroxz;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package org.example;
+package de.neeroxz;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
