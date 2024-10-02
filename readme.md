@@ -17,7 +17,7 @@
 1. Klone das Repository:
 
    ```bash
-   git clone [Repository-URL]
+   git clone https://github.com/NeeroxZ/FitTrackPro.git
 
 2. Navigiere in das Verzeichnis:
 
