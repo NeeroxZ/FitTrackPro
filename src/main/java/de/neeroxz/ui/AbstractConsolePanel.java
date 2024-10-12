@@ -1,5 +1,4 @@
 package de.neeroxz.ui;
-import de.neeroxz.util.AppStrings;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,8 +12,8 @@ import java.util.ArrayList;
  */
 public abstract class AbstractConsolePanel {
 
-    private List<MenuAction> menuActions = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
+    private final List<MenuAction> menuActions = new ArrayList<>();
+    private final Scanner scanner = new Scanner(System.in);
 
     public AbstractConsolePanel() {
         // Exit-Option immer hinzufügen
