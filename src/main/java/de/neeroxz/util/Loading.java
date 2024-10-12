@@ -1,5 +1,7 @@
 package de.neeroxz.util;
 
+import de.neeroxz.App;
+
 import java.sql.SQLOutput;
 
 /**
@@ -9,13 +11,6 @@ import java.sql.SQLOutput;
  * @date 02.10.2024
  */
 public class Loading {
-    private String asciiArt =
-            "  ______ _           _____                 _____                     \n" +
-                    " |  ____| |         |_   _|               |  __ \\                    \n" +
-                    " | |__  | |__   __ _| |   _ __   ___ _ __ | |  | | ___ _ __ ___  ___ \n" +
-                    " |  __| | '_ \\ / _` | | | | '_ \\ / _ \\ '_ \\| |  | |/ _ \\ '__/ __|/ _ \\\n" +
-                    " | |____| | | | (_| | | | | | | |  __/ | | | |__| |  __/ |  \\__ \\  __/\n" +
-                    " |______|_| |_|\\__,_| |_| |_| |_|\\___|_| |_|_____/ \\___|_|  |___/\\___|\n";
 
     public Loading() {
         super();
@@ -23,7 +18,7 @@ public class Loading {
 
     public void progressBar(int total) throws InterruptedException {
         int barLength = 50; // Länge des Fortschrittsbalkens
-        System.out.println(asciiArt); // Ausgabe der ASCII-Art
+        System.out.println(AppStrings.ASCIIART.getAppString()); // Ausgabe der ASCII-Art
 
         for (int i = 0; i <= total; i++) {
             // Berechnung des Anteils
@@ -45,6 +40,6 @@ public class Loading {
             System.out.print("\r[" + bar + "] " + (int) (progress * 100) + "%");
             Thread.sleep(100); // Simuliere eine Aufgabe mit Verzögerung
         }
-        System.out.print("\nFertig!\n"); // Abschlussausgabe
+        System.out.print("\nErfolgreich Geladen!\n"); // Abschlussausgabe
     }
 }
