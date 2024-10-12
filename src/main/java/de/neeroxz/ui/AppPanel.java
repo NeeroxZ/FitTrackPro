@@ -41,6 +41,13 @@ public class AppPanel extends AbstractConsolePanel{
         private void selectTraining() {
             System.out.println("Trainingsauswahl (noch nicht implementiert).");
         }
+
+        @Override
+        protected boolean isExitOption(int choice) {
+        // "Beenden" ist die letzte Option, nicht "1"
+        return choice == getMenuActionCount();  // Beenden ist die letzte Option
+        }
+
         private void exitApp() {
         System.out.println("Programm wird beendet...");
         System.exit(0);
