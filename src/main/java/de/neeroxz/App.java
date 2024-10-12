@@ -1,9 +1,12 @@
 package de.neeroxz;
 
-import de.neeroxz.util.Loading;
+import de.neeroxz.ui.AppPanel;
 
 public class App {
-    public static void main(String[] args) throws InterruptedException {
-        new Loading().progressBar(100);
+
+    public static void main(String[] args){
+        // AppPanel steuert das Hauptmenü
+        AppPanel appPanel = new AppPanel();
+        appPanel.showPanel();
     }
 }
