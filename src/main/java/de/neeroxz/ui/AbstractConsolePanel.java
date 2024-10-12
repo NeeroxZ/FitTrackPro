@@ -1,9 +1,9 @@
 package de.neeroxz.ui;
 import de.neeroxz.util.AppStrings;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class: AbstractConsolePanel
@@ -13,15 +13,14 @@ import java.util.List;
  */
 public abstract class AbstractConsolePanel {
 
-    private List<MenuAction> menuActions = new ArrayList<>();  // Liste der Menüaktionen
+    private List<MenuAction> menuActions = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
     public AbstractConsolePanel() {
         // Exit-Option immer hinzufügen
-        menuActions.add(new MenuAction("Zurück zum Hauptmenü", this::exitPanel));
+        addMenuAction("Zurück zum Hauptmenü", this::exitPanel);
     }
 
-    // Methode zum Hinzufügen von weiteren Aktionen
     protected void addMenuAction(String name, Runnable action) {
         menuActions.add(new MenuAction(name, action));
     }
@@ -29,7 +28,10 @@ public abstract class AbstractConsolePanel {
         menuActions.remove(0);
     }
 
-    // Menü anzeigen und Eingaben verarbeiten
+    protected int getMenuActionCount() {
+        return menuActions.size();
+    }
+
     public void handleInput() {
         boolean validInput = false;
 
@@ -41,15 +43,16 @@ public abstract class AbstractConsolePanel {
                 System.out.println((i + 1) + ". " + menuActions.get(i).getName());
             }
 
-            System.out.print("Ihre Eingabe: ");
-            int input = scanner.nextInt();
+            System.out.print("Ihre Auswahl: ");
+            int choice = scanner.nextInt();
             scanner.nextLine();
 
             // Überprüfen, ob die Eingabe gültig ist
-            if (input > 0 && input <= menuActions.size()) {
-                System.out.println(AppStrings.LINESEPARATOR.getAppString());
-                menuActions.get(input - 1).execute();
-                if (input == 1) validInput = true;  // Bei Exit das Menü verlassen
+            if (choice > 0 && choice <= menuActions.size()) {
+                menuActions.get(choice - 1).execute();
+                if (isExitOption(choice)) {  // Wenn "Beenden" gewählt wird
+                    validInput = true;
+                }
             } else {
                 System.out.println("Ungültige Auswahl! Bitte erneut versuchen.");
             }
@@ -61,5 +64,10 @@ public abstract class AbstractConsolePanel {
         System.out.println("Zurück zum Hauptmenü...");
     }
 
-    public abstract void showPanel();
+    protected boolean isExitOption(int choice) {
+        return choice == 1;  // Standardmäßig ist "1" die Exit-Option
+    }
+
+    // Abstrakte Methode, die in den abgeleiteten Klassen implementiert wird
+    public abstract void showPanel() throws InterruptedException;
 }
